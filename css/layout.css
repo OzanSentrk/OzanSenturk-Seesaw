@@ -1,0 +1,23 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.weights {
+  display: flex;
+  gap: 750px;
+  font-weight: bold;
+}
+.sim-area {
+  position: relative;
+  width: var(--plank-width);
+  height: 300px;
+}
