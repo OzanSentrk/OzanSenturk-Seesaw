@@ -46,6 +46,37 @@ The simulation follows the rotational equilibrium principle:
 
 2.  Open `index.html` in your browser (or use Live Server).
 
+## 🧠 Case Study: Implementation Details
+
+### 1. Thought Process & Design Decisions
+
+1.  **Modular Architecture:**
+    I separated the code into distinct modules (physics.js, ui.js, storage.js, app.js) to follow the "Separation of Concerns" principle. This makes the codebase easier to test, debug, and maintain compared to a single monolithic file.
+    Torque = Weight (kg) \* Distance from Center (px)
+
+2.  **State-Driven Rendering:**
+    Instead of manipulating the DOM directly for every calculation, I created a centralized state (seesawObjects array). The UI is a reflection of this state. This made implementing localStorage persistence much easier, as I only needed to save/load this array.
+3.  **DOM over Canvas:**
+    Although HTML5 Canvas offers better performance for high-frequency animations, I used DOM manipulation (HTML Elements) because the requirements strictly forbade Canvas and asked for pure JS/CSS.
+
+### 2. Trade-offs & Limitations
+
+1.  **Physics Simplification:**
+    The simulation calculates torque equilibrium but ignores complex physics factors like friction, air resistance, or angular momentum acceleration. The plank rotates to the calculated angle immediately (smoothed by CSS transitions) rather than accelerating over time.
+
+2.  **DOM Performance:**
+    For a seesaw simulation with 10-20 objects, DOM manipulation is performant enough. However, if we were to simulate hundreds of objects, this approach would cause layout thrashing. In a real-world high-performance scenario, Canvas or WebGL would be preferred.
+3.  **Z-Index Stacking:**
+    Objects are placed sequentially. If multiple objects are placed on the exact same spot, they might overlap visually without interacting with each other physically (collision detection was out of scope).
+
+### 3. AI Usage Disclosure
+
+1.  **Assisted Parts:**
+    AI tools were used to generate the initial README.md structure, debug specific syntax errors in the module imports, and refine the CSS transition timing functions for smoother animations.
+
+2.  **Logic Support:**
+    While the core algorithms (calcTorque, determineSeesawAngle) were implemented by the developer, AI assistance was utilized to troubleshoot specific logical bottlenecks, clarify complex JavaScript state behaviors, and optimize implementation details when technical blockers were encountered.
+
 ## 🤝 Contributing
 
 1.  Fork the project.
