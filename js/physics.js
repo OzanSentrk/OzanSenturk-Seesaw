@@ -10,6 +10,8 @@ export function calcTorque(objects, seesawWidth) {
   let leftTorque = 0; // initially left-and right torque are 0
   let rightTorque = 0;
 
+  let leftWeightTotal = 0; // total weight on left side
+  let rightWeightTotal = 0; // total weight on right side
   const seesawCenter = seesawWidth / 2; // center point of seesaw
 
   objects.forEach((obj) => {
@@ -19,12 +21,14 @@ export function calcTorque(objects, seesawWidth) {
     if (obj.position < seesawCenter) {
       //if object is on left side of seesaw
       leftTorque += torque; // add to left torque
+      leftWeightTotal += obj.weight; // add to left weight total
     } else {
       rightTorque += torque; // else add to right torque
+      rightWeightTotal += obj.weight; // add to right weight total
     }
   });
 
-  return { leftTorque, rightTorque }; //return both torques as an object
+  return { leftTorque, rightTorque, leftWeightTotal, rightWeightTotal }; //return both torques and weight totals as an object
 }
 
 export function determineSeesawAngle(leftTorque, rightTorque, Max_Angle) {

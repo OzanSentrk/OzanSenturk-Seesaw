@@ -6,3 +6,10 @@ export function createObject(weight, position, parentElement) {
   parentElement.appendChild(obj); // Append to parent element
   return obj;
 }
+
+export function updateWeightDisplays(leftWeight, rightWeight) {
+  const leftWeightElement = document.getElementById("left-weight");
+  const rightWeightElement = document.getElementById("right-weight");
+  leftWeightElement.innerText = `Left Weight Total: ${leftWeight}kg`;
+  rightWeightElement.innerText = `Right Weight Total: ${rightWeight}kg`;
+}
