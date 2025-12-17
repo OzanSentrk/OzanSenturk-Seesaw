@@ -5,9 +5,21 @@ import {
   determineSeesawAngle,
 } from "./js/physics.js";
 import { createObject } from "./js/ui.js";
-
+import { saveData, loadData } from "./js/storage.js";
 const plankElement = document.getElementById("seesaw-plank"); // Assuming there's an element with this ID
-let seesawObjects = []; // Array to hold objects on the seesaw
+let seesawObjects = loadData(); // Array to hold objects on the seesaw
+
+if (seesawObjects.length > 0) {
+  // 1. Kutuları ekrana geri koy
+  seesawObjects.forEach((obj) => {
+    createObject(obj.weight, obj.position, plankElement);
+  });
+
+  // 2. Fiziği hemen hesapla (Tahta yamuk başlamalıysa yamuk dursun)
+  const { leftTorque, rightTorque } = calcTorque(seesawObjects, Seesaw_Width);
+  const angle = determineSeesawAngle(leftTorque, rightTorque);
+  plankElement.style.transform = `rotate(${angle}deg)`;
+}
 plankElement.addEventListener("click", (event) => {
   //listen clicks for plank
   const rectangle = plankElement.getBoundingClientRect(); //get position and size
@@ -25,7 +37,7 @@ plankElement.addEventListener("click", (event) => {
   };
   seesawObjects.push(newObj);
   //add new object to seesawObjects array
-
+  saveData(seesawObjects);
   // Recalculate torques and angle after adding new object
   const { leftTorque, rightTorque } = calcTorque(seesawObjects, Seesaw_Width);
   // Calculate the new angle based on torques
