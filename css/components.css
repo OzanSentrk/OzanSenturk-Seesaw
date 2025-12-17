@@ -1,0 +1,58 @@
+/* Tahterevalli */
+.plank {
+  width: var(--plank-width);
+  height: var(--plank-height);
+  background-color: var(--plank-color);
+  border-radius: 5px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transition: transform 0.5s; /* Dönüş animasyonu */
+  transform-origin: center center;
+  z-index: 2;
+  cursor: pointer;
+  transition: transform 0.4s ease-out;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Üçgen Ayak */
+.pivot {
+  width: 0;
+  height: 0;
+  border-left: var(--pivot-size) solid transparent;
+  border-right: var(--pivot-size) solid transparent;
+  border-bottom: calc(var(--pivot-size) * 2) solid var(--pivot-color);
+  position: absolute;
+  top: calc(50% + var(--plank-height));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+/* Ağırlık Kutusu */
+.weight-object {
+  position: absolute;
+  bottom: var(--plank-height);
+  width: 40px;
+  height: 40px;
+  background-color: var(--object-color);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  transform: translateX(-50%); /* Merkezden hizala */
+  pointer-events: none; /* Tıklamayı engelleme */
+}
+.reset-btn {
+  margin-top: 10px;
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: var(--object-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}

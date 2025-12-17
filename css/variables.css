@@ -1,0 +1,10 @@
+:root {
+  --bg-color: #f0f2f5;
+  --plank-color: #8a8a8a;
+  --pivot-color: #23545f;
+  --object-color: #e74c3c;
+  --text-color: #333;
+  --plank-width: 700px;
+  --plank-height: 10px;
+  --pivot-size: 30px;
+}
